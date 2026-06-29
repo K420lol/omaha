@@ -80,15 +80,13 @@ def GenerateUpdateResponseFile(target, sources, version_list, has_x64_binaries):
 def WriteInstallerLog(log_fn, log_text, manifest_fn):
   """Save a log of what went into the installer."""
   dump_data = ''
-  file_to_dump = open(os.path.abspath(manifest_fn), 'r')
-  content = file_to_dump.read()
-  file_to_dump.close()
+  with open(os.path.abspath(manifest_fn), 'r') as file_to_dump:
+    content = file_to_dump.read()
   dump_data += '\nMANIFEST:\n'
   dump_data += str(manifest_fn)
   dump_data += '\n'
   dump_data += content
-  f = open(os.path.abspath(log_fn), 'w')
-  f.write(log_text)
-  f.write(dump_data)
-  f.close()
+  with open(os.path.abspath(log_fn), 'w') as f:
+    f.write(log_text)
+    f.write(dump_data)
   return 0
