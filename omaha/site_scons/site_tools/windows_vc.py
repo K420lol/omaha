@@ -78,11 +78,6 @@ def SetMsvcCompilerVersion(
 
 
 def _SetMsvcCompilerVersion(env, vc_version, vc_flavor='x64_x86'):
-  vc_install_dir = os.environ.get('VCToolsInstallDir')
-  vc_redist_dir = os.environ.get('VCToolsRedistDir')
-
-  platform_sdk_dir = os.environ.get('OMAHA_PLATFORM_SDK_DIR')
-  platform_sdk_version = os.environ.get('OMAHA_WINDOWS_SDK_10_0_VERSION')
   platform_sdk_include_dir = (platform_sdk_dir + 'include/' +
                               platform_sdk_version)
   platform_sdk_lib_dir = platform_sdk_dir + 'lib/' + platform_sdk_version
