@@ -222,9 +222,9 @@ def GetLanguagesForVersion(omaha_version):
 def GetShellLanguagesForVersion(omaha_version):
   """Returns a list of languages supported by the omaha_version shell."""
 
-  # Silence PyLint. All languages supported by this script currently have the
-  # same set of languages, so this variable is unused.
-  omaha_version = omaha_version
+  # All languages supported by this script currently have the same set of
+  # languages; keep the parameter for API compatibility.
+  del omaha_version
 
   return _OMAHA_LANGUAGES + _ADDITIONAL_SHELL_LANGUAGES
 

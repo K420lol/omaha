@@ -74,15 +74,7 @@ def SetMsvcCompilerVersion(
                             vc_version='15.0',
                             vc_flavor=vc_flavor)
   else:
-    raise ValueError('Unknown MSVC compiler version: "%s".' % version_num)
-
-
-def _SetMsvcCompilerVersion(env, vc_version, vc_flavor='x64_x86'):
-  env['GOOGLE3'] = '$GOOGLECLIENT'
-  env['THIRD_PARTY'] = '$GOOGLECLIENT/third_party/'
-
-  env.Replace(
-      PLATFORM_SDK_DIR=platform_sdk_dir,
+    raise ValueError('Unknown MSVC compiler version:
       WINDOWS_SDK_10_0_VERSION=platform_sdk_version,
       WINDOWS_SDK_10_0_LIB_DIR=platform_sdk_lib_dir,
 

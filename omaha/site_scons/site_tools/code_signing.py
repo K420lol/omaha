@@ -135,43 +135,7 @@ def SignedBinaryGenerator(source, target, env, for_signature):
 
 def DualSignedBinaryGenerator(source, target, env, for_signature):
   """A builder generator for code signing with two certs."""
-  source = source                # Silence gpylint.
-  target = target                # Silence gpylint.
-  for_signature = for_signature  # Silence gpylint.
-
-  # Alway copy and make writable.
-  commands = [
-      SCons.Script.Copy('$TARGET', '$SOURCE'),
-      SCons.Script.Chmod('$TARGET', 0755),
-  ]
-
-  # Only do signing if there are certificate files or a certificate name. The
-  # CERTIFICATE_NAME is expected to be the same for both SHA1 and SHA2.
-  if (env.subst('$SHA1_CERTIFICATE_PATH') and
-      env.subst('$SHA2_CERTIFICATE_PATH')) or env.subst('$CERTIFICATE_NAME'):
-    # Setup common signing command options (same as single signing).
-    base_signing_cmd = '$SIGNTOOL sign /v '
-    # Add certificate store if any.
-    if env.subst('$CERTIFICATE_NAME'):
-      # The command used to do signing (target added on below).
-      base_signing_cmd += ' /s "$CERTIFICATE_STORE" /n "$CERTIFICATE_NAME"'
-
-    # SHA1-specific options, e.g.:
-    # "signtool.exe" sign /v /n "Google Inc"
-    #   /t http://timestamp.globalsign.com/scripts/timstamp.dll
-    #   /i "Verisign" someFile.exe
-    sha1_signing_cmd = base_signing_cmd
-    sha1_signing_cmd += ' /fd sha1'
-    # Add in certificate file if any.
-    if env.subst('$SHA1_CERTIFICATE_PATH'):
-      sha1_signing_cmd += ' /f "$SHA1_CERTIFICATE_PATH"'
-      # Add certificate password if any.
-      if env.subst('$SHA1_CERTIFICATE_PASSWORD'):
-        sha1_signing_cmd += ' /p "$SHA1_CERTIFICATE_PASSWORD"'
-    # Add timestamp server if any.
-    if env.subst('$SHA1_TIMESTAMP_SERVER'):
-      sha1_signing_cmd += ' /t "$SHA1_TIMESTAMP_SERVER"'
-    # Add issuer if any.
+  _ = source, target, for_signature  # Unused; required by SCons generator signature.
     if env.subst('$SHA1_CERTIFICATE_ISSUER'):
       sha1_signing_cmd += ' /i "$SHA1_CERTIFICATE_ISSUER"'
     # Add cert hash if any.
