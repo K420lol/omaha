@@ -30,11 +30,26 @@ void PrintHelp(char *buffer)
              "  d: decode file\n");
 }
 
-int PrintError(char *buffer, const char *message)
+int PrintError(char *buffer, size_t bufferSize, const char *message)
 {
-  strcat(buffer, "\nError: ");
-  strcat(buffer, message);
-  strcat(buffer, "\n");
+  size_t len = strlen(buffer);
+  if (len < bufferSize)
+  {
+    size_t remain = bufferSize - len - 1;
+    strncat(buffer, "\nError: ", remain);
+    len = strlen(buffer);
+    if (len < bufferSize)
+    {
+      remain = bufferSize - len - 1;
+      strncat(buffer, message, remain);
+      len = strlen(buffer);
+      if (len < bufferSize)
+      {
+        remain = bufferSize - len - 1;
+        strncat(buffer, "\n", remain);
+      }
+    }
+  }
   return 1;
 }
 
@@ -44,9 +59,9 @@ int PrintErrorNumber(char *buffer, SRes val)
   return 1;
 }
 
-int PrintUserError(char *buffer)
+int PrintUserError(char *buffer, size_t bufferSize)
 {
-  return PrintError(buffer, "Incorrect command");
+  return PrintError(buffer, bufferSize, "Incorrect command");
 }
 
 #define IN_BUF_SIZE (1 << 16)
