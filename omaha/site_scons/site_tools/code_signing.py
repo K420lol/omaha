@@ -136,8 +136,6 @@ def SignedBinaryGenerator(source, target, env, for_signature):
 def DualSignedBinaryGenerator(source, target, env, for_signature):
   """A builder generator for code signing with two certs."""
   _ = source, target, for_signature  # Unused; required by SCons generator signature.
-    base_signing_cmd = '$SIGNTOOL sign /v '
-    # Add certificate store if any.
     if env.subst('$CERTIFICATE_NAME'):
       # The command used to do signing (target added on below).
       base_signing_cmd += ' /s "$CERTIFICATE_STORE" /n "$CERTIFICATE_NAME"'
