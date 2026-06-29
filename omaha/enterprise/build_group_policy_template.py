@@ -34,9 +34,8 @@ def BuildGroupPolicyTemplate(env, target, apps, apps_file_path=None):
         dependencies.
   """
 
-  def _WriteAdmFile(target, source, env):
+  def _WriteAdmFile(target, _source, env):
     """Called during the build phase to generate and write the ADM file."""
-    source = source  # Avoid PyLint warning.
     generate_group_policy_template.WriteGroupPolicyTemplate(
         env.File(target[0]).abspath,
         env['public_apps'])
