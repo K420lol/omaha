@@ -136,8 +136,6 @@ def SignedBinaryGenerator(source, target, env, for_signature):
 def DualSignedBinaryGenerator(source, target, env, for_signature):
   """A builder generator for code signing with two certs."""
   _ = source, target, for_signature  # Unused; required by SCons generator signature.
-    #   /t http://timestamp.globalsign.com/scripts/timstamp.dll
-    #   /i "Verisign" someFile.exe
     sha1_signing_cmd = base_signing_cmd
     sha1_signing_cmd += ' /fd sha1'
     # Add in certificate file if any.
