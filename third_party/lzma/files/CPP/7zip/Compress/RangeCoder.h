@@ -46,7 +46,7 @@ public:
 
   void Encode(UInt32 start, UInt32 size, UInt32 total)
   {
-    Low += start * (Range /= total);
+    Low += (UInt64)start * (Range /= total);
     Range *= size;
     while (Range < kTopValue)
     {
