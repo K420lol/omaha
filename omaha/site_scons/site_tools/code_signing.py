@@ -136,8 +136,6 @@ def SignedBinaryGenerator(source, target, env, for_signature):
 def DualSignedBinaryGenerator(source, target, env, for_signature):
   """A builder generator for code signing with two certs."""
   _ = source, target, for_signature  # Unused; required by SCons generator signature.
-  commands = [
-      SCons.Script.Copy('$TARGET', '$SOURCE'),
       SCons.Script.Chmod('$TARGET', 0755),
   ]
 
