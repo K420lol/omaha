@@ -78,11 +78,6 @@ def SetMsvcCompilerVersion(
 
 
 def _SetMsvcCompilerVersion(env, vc_version, vc_flavor='x64_x86'):
-  if (vc_flavor == 'x86_x64' or vc_flavor == 'x64_x64'):
-    flavor = 'amd64'
-  else:
-    flavor = 'x86'
-
   vc_install_dir = os.environ.get('VCToolsInstallDir')
   vc_redist_dir = os.environ.get('VCToolsRedistDir')
 
