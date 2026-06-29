@@ -80,9 +80,8 @@ def BuildGroupPolicyTemplateAdmx(
         env['public_apps'])
 
   def _WriteAdmlFile(target, source, env):
-    """Called during the build phase to generate and write the ADML file."""
+  def _WriteAdmlFile(target, _source, env):
     source = source  # Avoid PyLint warning.
-    generate_group_policy_template_admx.WriteGroupPolicyTemplateAdml(
         env.File(target[0]).abspath,
         env['public_apps'])
     return 0
