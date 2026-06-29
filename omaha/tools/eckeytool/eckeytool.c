@@ -33,8 +33,13 @@
 
 int get_curr_year() {
   time_t now = time(NULL);
-  struct tm* timeinfo = localtime(&now);
-  return 1900 + timeinfo->tm_year;
+  struct tm timeinfo;
+
+  if (now == (time_t)-1 || localtime_r(&now, &timeinfo) == NULL) {
+    return 0;
+  }
+
+  return 1900 + timeinfo.tm_year;
 }
 
 int print_octets(const unsigned char* octets, size_t len, int version) {
