@@ -241,7 +241,9 @@ void LogMessage::Init(const char* file, int line) {
     localtime_s(&local_time, &t);
     struct tm* tm_time = &local_time;
 #else
-    struct tm* tm_time = localtime(&t);
+    struct tm local_time = {0};
+    localtime_r(&t, &local_time);
+    struct tm* tm_time = &local_time;
 #endif
     stream_ << std::setfill('0')
             << std::setw(2) << 1 + tm_time->tm_mon
