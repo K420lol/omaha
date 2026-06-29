@@ -135,9 +135,7 @@ def SignedBinaryGenerator(source, target, env, for_signature):
 
 def DualSignedBinaryGenerator(source, target, env, for_signature):
   """A builder generator for code signing with two certs."""
-  source = source                # Silence gpylint.
-  target = target                # Silence gpylint.
-  for_signature = for_signature  # Silence gpylint.
+  _ = source, target, for_signature  # Unused; required by SCons generator signature.
 
   # Alway copy and make writable.
   commands = [
