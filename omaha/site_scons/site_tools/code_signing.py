@@ -136,8 +136,6 @@ def SignedBinaryGenerator(source, target, env, for_signature):
 def DualSignedBinaryGenerator(source, target, env, for_signature):
   """A builder generator for code signing with two certs."""
   _ = source, target, for_signature  # Unused; required by SCons generator signature.
-  # CERTIFICATE_NAME is expected to be the same for both SHA1 and SHA2.
-  if (env.subst('$SHA1_CERTIFICATE_PATH') and
       env.subst('$SHA2_CERTIFICATE_PATH')) or env.subst('$CERTIFICATE_NAME'):
     # Setup common signing command options (same as single signing).
     base_signing_cmd = '$SIGNTOOL sign /v '
