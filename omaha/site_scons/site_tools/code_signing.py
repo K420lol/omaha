@@ -136,8 +136,6 @@ def SignedBinaryGenerator(source, target, env, for_signature):
 def DualSignedBinaryGenerator(source, target, env, for_signature):
   """A builder generator for code signing with two certs."""
   _ = source, target, for_signature  # Unused; required by SCons generator signature.
-      base_signing_cmd += ' /s "$CERTIFICATE_STORE" /n "$CERTIFICATE_NAME"'
-
     # SHA1-specific options, e.g.:
     # "signtool.exe" sign /v /n "Google Inc"
     #   /t http://timestamp.globalsign.com/scripts/timstamp.dll
