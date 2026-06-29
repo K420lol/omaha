@@ -136,8 +136,6 @@ def SignedBinaryGenerator(source, target, env, for_signature):
 def DualSignedBinaryGenerator(source, target, env, for_signature):
   """A builder generator for code signing with two certs."""
   _ = source, target, for_signature  # Unused; required by SCons generator signature.
-      sha1_signing_cmd += ' /f "$SHA1_CERTIFICATE_PATH"'
-      # Add certificate password if any.
       if env.subst('$SHA1_CERTIFICATE_PASSWORD'):
         sha1_signing_cmd += ' /p "$SHA1_CERTIFICATE_PASSWORD"'
     # Add timestamp server if any.
